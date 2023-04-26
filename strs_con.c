@@ -9,9 +9,9 @@
 char *strs_con(int n, char *s1, char *s2, ...)
 {
 	int a, b, c = 0, len = 0;
-
 	char *str, *join;
 	va_list args_m, args_c;
+
 	if (!s1 || !s1[0])
 		len = 1;
 	else

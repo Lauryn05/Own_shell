@@ -15,10 +15,10 @@ char **tokenization(char *str, char *delim, size_t *counter)
 	zeros(size, MAX_WORD);
 	n = strcount(str, delim, size);
 	if (n == 0)
-		return NULL;
+		return (NULL);
 	words = malloc((sizeof(char *) * n) + 1);
 	if (!words)
-		return NULL;
+		return (NULL);
 	for (vector = 0; vector < n; vector++)
 	{
 		words[vector] = malloc((sizeof(char) * size[vector] + 1));
@@ -27,7 +27,7 @@ char **tokenization(char *str, char *delim, size_t *counter)
 			for (vector--; vector >= 0; vector--)
 				free(words[vector]);
 			free(words);
-			return(NULL);
+			return (NULL);
 		}
 		for (ch = 0; ch < size[vector]; ch++, ptr_st++)
 		{

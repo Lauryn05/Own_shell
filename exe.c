@@ -1,10 +1,10 @@
 #include "shell.h"
 /**
  * exe - executes other processes
- * @arg:
- * @n:
- * @envp:
- * Return:
+ * @arg: Arguments
+ * @n: Number of arguments
+ * @envp: Environment variable
+ * Return: No return if successful or error on failure
  */
 int exe(char **arg, int n, char **envp)
 {

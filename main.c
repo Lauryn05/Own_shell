@@ -3,7 +3,6 @@
  * main - runs shell commands
  * @argc: Number of arguments
  * @argv: Array of arguments
- * @env: Environmental variable of current program
  * Return: Always 0
  */
 char **envt = NULL;
@@ -19,7 +18,7 @@ int main(int argc, char *argv[])
 	while (1 && !pipe)
 	{
 		write (STDOUT_FILENO, prompt, 2);
-		size = getline(&buffer, &buffer_size, stdin);
+		size = getline(&buffer,	&buffer_size, stdin);
 		if (size == SIZE_MAX)
 		{
 			perror("Error (getline)");
