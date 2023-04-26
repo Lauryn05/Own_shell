@@ -10,7 +10,7 @@ char **tokenization(char *str, char *delim, size_t *counter)
 {
 	int ch, vector;
 	char **words, *ptr_st = str;
-	unsigned int n, size[MAX_WORD];
+	int n, size[MAX_WORD];
 
 	zeros(size, MAX_WORD);
 	n = strcount(str, delim, size);

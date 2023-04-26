@@ -1,6 +1,7 @@
 #ifndef SHELL_H
 #define SHELL_H
 
+#define BUFFER_SIZE 1024
 #define MAX_WORD 100
 extern char **envt;
 
@@ -17,17 +18,19 @@ extern char **envt;
 #include <unistd.h>
 #include <stdio.h>
 #include <stdarg.h>
+#include <string.h>
+
 
 int _atoi(char *s);
 int _strlen(char *s);
 int _strncmp(char *s1, char *s2, size_t n);
-int strcount(char *str, char *delim, unsigned int *array);
+int strcount(char *str, char *delim, int *array);
 void free_vector(char **vector, int len);
 int exe(char **arg, int n, char **envp);
 void _errors(pid_t pid);
 bool builtin(char **args, size_t n);
 void _exits(char **arg, size_t n);
-void zeros(unsigned int *array, size_t size);
+void zeros(int *array, size_t size);
 bool filestats(char *pathname, struct stat *statsbuffer);
 bool delimiter(char a, char *delim);
 char *str_con(char *s1, char *s2);

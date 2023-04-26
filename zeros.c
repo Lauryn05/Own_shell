@@ -5,7 +5,7 @@
  * @size: Array size
  * Return: no return
  */
-void zero(unsigned int *array, size_t size)
+void zeros(int *array, size_t size)
 {
 	size_t a;
 

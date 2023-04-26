@@ -6,7 +6,7 @@
  * @array: points to array where the string length will be stored
  * Return: Number of strings
  */
-int strcount(char *str, char *delim, unsigned int *array)
+int strcount(char *str, char *delim, int *array)
 {
 	unsigned int a, b, len = 1, counter = 0;
 	char *_strcopy = str;
