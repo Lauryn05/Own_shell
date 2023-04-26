@@ -7,10 +7,10 @@
  * Return: Always 0
  */
 char **envt = NULL;
-int main(void)
+int main(int argc, char *argv[])
 {
-	char *fullpath = NULL, *prompt = "$ ", **args, *buffer;
-	size_t buffer_size = 0, n, size;
+	char *fullpath = NULL, *prompt = "$ ", *buffer;
+	size_t buffer_size = 0, size, n = argc;
 	pid_t cpid;
 	int cstat;
 	bool pipe = false;
@@ -28,39 +28,39 @@ int main(void)
 		}
 		if (buffer[size - 1] == '\n')
 			buffer[size - 1] = '\0';
-		args = tokenization(buffer, " ", &n);
-		if (builtin(args, n))
+		argv = tokenization(buffer, " ", &n);
+		if (builtin(argv, argc))
 			continue;
-		if (!filestats(args[0], &statsbuffer))
+		if (!filestats(argv[0], &statsbuffer))
 		{
 			if (!fullpath)
 			{
 				perror("Error (file status)");
-				free_vector(args, n);
+				free_vector(argv, argc);
 				continue;
 			}
 			else
 			{
-				free(args[0]);
-				args[0] = fullpath;
+				free(argv[0]);
+				argv[0] = fullpath;
 			}
 		}
 		cpid = fork();
 		if (cpid == -1)
 		{
 			perror("Error (fork)");
-			free_vector(args, n);
+			free_vector(argv, argc);
 			exit(EXIT_FAILURE);
 		}
 		if (cpid == 0)
-			exe(args, n, envt);
+			exe(argv, argc, envt);
 		if (waitpid(cpid, &cstat, 0) == -1)
 		{
 			perror("Error (wait)");
-			free_vector(args, n);
+			free_vector(argv, argc);
 			exit(EXIT_FAILURE);
 		}
-		free_vector(args, n);
+		free_vector(argv, argc);
 	}
 	free(buffer);
 	return (0);
