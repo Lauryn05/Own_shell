@@ -6,6 +6,7 @@
  * @env: Environmental variable of current program
  * Return: Always 0
  */
+char **envt = NULL;
 int main(void)
 {
 	char *fullpath = NULL, *prompt = "$ ", **args, *buffer;
