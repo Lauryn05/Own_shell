@@ -23,11 +23,13 @@ int main(int argc, char *argv[], char **env)
 	{
 		if (!c)
 		{
-		       if (!pipe)
-			       write (STDOUT_FILENO, prompt, 2);
-		       size = getline(&buffer, &buffer_size, stdin);
-		       if (size == 0)
-		       {
+			if (isatty(STDIN_FILENO) == 0)
+				pipe = true;
+			if (!pipe)
+				write (STDOUT_FILENO, prompt, 2);
+			size = getline(&buffer, &buffer_size, stdin);
+			if (size == 0)
+			{
 				perror("Error (getline)");
 				free(buffer);
 				exit(EXIT_FAILURE);
